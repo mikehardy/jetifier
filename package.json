@@ -1,0 +1,34 @@
+{
+  "name": "jetifier",
+  "version": "1.0.0-beta04.1",
+  "description": "jetifier from Android Studio, in npm package format",
+  "main": "index.js",
+  "bin": {
+    "jetifier-standalone": "./bin/jetifier-standalone"
+  },
+  "scripts": {
+    "shipit": "np",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikehardy/jetifier.git"
+  },
+  "keywords": [
+    "node",
+    "react",
+    "react-native",
+    "jetifier",
+    "jetifier-standalone",
+    "androidx"
+  ],
+  "author": "Mike Hardy (github@mikehardy.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikehardy/jetifier/issues"
+  },
+  "homepage": "https://github.com/mikehardy/jetifier#readme",
+  "devDependencies": {
+    "np": "^5.0.2"
+  }
+}
