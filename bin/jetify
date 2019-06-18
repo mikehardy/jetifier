@@ -28,7 +28,6 @@ N=64
 for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*' | sort`; do
   (
     jetify $FILE
-    sleep $(( (RANDOM % 3) + 1))
   ) &
   # allow only to execute $N jobs in parallel
   if [[ $(jobs -r -p | wc -l) -gt $N ]]; then
