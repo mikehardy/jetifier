@@ -23,7 +23,7 @@ jetify() {
   rm -f "$FILE.bak"
 }
 
-N=64
+N=128
 
 find . -type f -name "*_peaks.bed" ! -path "./tmp/*" ! -path "./scripts/*" 
 for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*' ! -path "*/android/app/build/*" ! -path "*/android/build/*"`; do
