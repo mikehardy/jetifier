@@ -1,24 +1,5 @@
 #!/bin/bash
 
-#MAPPING_DIR=node_modules/jetifier/src
-#MAPPING_FILE=$MAPPING_DIR/androidx-class-mapping.csv
-#MAPPING_SED=$MAPPING_DIR/androidx-class-mapping.sed
-#PROJECT_DIR=node_modules
-#
-#rm -f $MAPPING_SED
-#echo "Creating new sed command from $MAPPING_FILE"
-#while IFS=, read -r from to
-#do
-#	echo "s/$from/$to/g;" >> $MAPPING_SED
-#done <<< "$(cat $MAPPING_FILE)"
-#echo "Command file for sed ready. Searching for files to jetify..."
-#
-#for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.xml" \) -type f -not -path '*/\.git*' | sort`; do
-#  echo "jetifying file $FILE"
-#  sed -i".bak" -f $MAPPING_SED $FILE
-#  rm -f "$FILE.bak"
-#done
-
 MAPPING_DIR=node_modules/jetifier/src
 MAPPING_FILE=$MAPPING_DIR/androidx-class-mapping.csv
 MAPPING_SED=$MAPPING_DIR/androidx-class-mapping.sed
@@ -42,9 +23,16 @@ jetify() {
   rm -f "$FILE.bak"
 }
 
-N=16
+N=64
 
 for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*' | sort`; do
-  ((i=i%N)); ((i++==0)) && wait
-  jetify $FILE &
+  (
+    jetify $FILE
+    sleep $(( (RANDOM % 3) + 1))
+  ) &
+  # allow only to execute $N jobs in parallel
+  if [[ $(jobs -r -p | wc -l) -gt $N ]]; then
+    # wait only for first job
+    wait -n
+  fi
 done
