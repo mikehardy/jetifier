@@ -25,13 +25,12 @@ jetify() {
 
 N=64
 
-for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*' | sort`; do
+find . -type f -name "*_peaks.bed" ! -path "./tmp/*" ! -path "./scripts/*" 
+for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*' ! -path "*/android/app/build/*" ! -path "*/android/build/*"`; do
   (
     jetify $FILE
   ) &
-  # allow only to execute $N jobs in parallel
   if [[ $(jobs -r -p | wc -l) -gt $N ]]; then
-    # wait only for first job
     wait -n
   fi
 done
