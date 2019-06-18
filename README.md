@@ -28,6 +28,8 @@ If there was a way to take your react-native dependencies and convert them, then
 
 Please note that any time you install a new dependency, or reinstall node modules, you will need to run `npx jetify` again.
 
+*Inspiration:* this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
+
 ## Contributing
 
 Please feel free to pull requests or log issues, especially to update versions if I somehow fail to notice an update. Thanks!
