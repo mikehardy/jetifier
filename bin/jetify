@@ -1,0 +1,20 @@
+#!/bin/bash
+
+MAPPING_DIR=node_modules/jetifier/src
+MAPPING_FILE=$MAPPING_DIR/androidx-class-mapping.csv
+MAPPING_SED=$MAPPING_DIR/androidx-class-mapping.sed
+PROJECT_DIR=node_modules
+
+rm -f $MAPPING_SED
+echo "Creating new sed command from $MAPPING_FILE"
+while IFS=, read -r from to
+do
+	echo "s/$from/$to/g;" >> $MAPPING_SED
+done <<< "$(cat $MAPPING_FILE)"
+echo "Command file for sed ready. Searching for files to jetify..."
+
+for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.xml" \) -type f -not -path '*/\.git*' | sort`; do
+  echo "jetifying file $FILE"
+  sed -i".bak" -f $MAPPING_SED $FILE
+  rm -f "$FILE.bak"
+done

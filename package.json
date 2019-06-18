@@ -4,9 +4,11 @@
   "description": "jetifier from Android Studio, in npm package format",
   "main": "index.js",
   "bin": {
-    "jetifier-standalone": "./bin/jetifier-standalone"
+    "jetifier-standalone": "./bin/jetifier-standalone",
+    "jetfiy": "./bin/jetify"
   },
   "scripts": {
+    "dev-sync": "cp -rv bin index.js lib package.json src ../../Kullki/kscoreapp-rxp/node_modules/jetifier",
     "shipit": "np",
     "test": ""
   },
