@@ -22,14 +22,12 @@ jetify() {
   sed -i -f $MAPPING_SED $FILE
 }
 
-N=128
+N=4
 
 find . -type f -name "*_peaks.bed" ! -path "./tmp/*" ! -path "./scripts/*" 
 for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*'`; do
+  ((i=i%N)); ((i++==0)) && wait
   (
-    jetify $FILE
-  ) &
-  if [[ $(jobs -r -p | wc -l) -gt $N ]]; then
-    wait -n
-  fi
+    jetify $FILE &
+  )
 done
