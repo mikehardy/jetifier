@@ -9,7 +9,7 @@ rm -f $MAPPING_SED
 echo "Creating new sed command from $MAPPING_FILE"
 while IFS=, read -r from to
 do
-	echo "s/$from/$to/g;" >> $MAPPING_SED
+  echo "s/$from/$to/g;" >> $MAPPING_SED
 done <<< "$(cat $MAPPING_FILE)"
 
 # renderscript needs conversion, but is not an official conversion, add it
@@ -19,8 +19,7 @@ echo "Command file for sed ready. Searching for files to jetify..."
 
 jetify() {
   echo "jetifying file $1"
-  sed -i".bak" -f $MAPPING_SED $FILE
-  rm -f "$FILE.bak"
+  sed -i -f $MAPPING_SED $FILE
 }
 
 N=128
