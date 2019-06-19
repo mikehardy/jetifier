@@ -1,6 +1,6 @@
 # jetifier
 
-The jetifier-standalone command-line utility from Android Studio, in npm package format
+The jetifier AdnroidX transition tool in npm format, with a react-native compatible style
 
 ## Usage for jar/zip/aar files
 
