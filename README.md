@@ -27,6 +27,7 @@ If there was a way to take your react-native dependencies and convert them, then
 1. `npx jetify`
 1. Get a cup of coffee, it takes a while. Performance improvements can come later.
 1. `npx react-native run-android` (this should compile and work)
+1. If it works, you should hook an `npx jetify` run in the postinstall target of your package.json so you don't forget to run it after installing or updating packages. There will be performance improvements soon (I think) which will make this less painful
 
 Please note that any time you install a new dependency, or reinstall node modules, you will need to run `npx jetify` again.
 
