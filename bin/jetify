@@ -17,7 +17,7 @@ echo "s/android.support.v8.renderscript/android.renderscript/g;" >> $MAPPING_SED
 
 echo "Command file for sed ready. Searching for files to jetify..."
 
-for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.xml" \) -type f -not -path '*/\.git*' | sort`; do
+for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*' | sort`; do
   echo "jetifying file $FILE"
   sed -i".bak" -f $MAPPING_SED $FILE
   rm -f "$FILE.bak"
