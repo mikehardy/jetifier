@@ -1,4 +1,5 @@
 language: android
+sudo: true
 
 jdk:
   - openjdk8
@@ -35,6 +36,7 @@ before_install:
 
 script:
   - git clone https://github.com/mikehardy/rn-androidx-demo.git
+  - sudo sysctl fs.inotify.max_user_watches=524288
   - cd rn-androidx-demo && ./make-demo.sh
 
 before_cache:
