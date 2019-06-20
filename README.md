@@ -41,10 +41,18 @@ Unfortunately jetifier can't solve all your problems. Here are some reasons it c
 
 1. You have a dependency that packages things in violation of Android packaging rules, like including an extra AndroidManifest.xml or similar: <https://github.com/acaziasoftcom/react-native-bottomsheet/pull/23> - this will lead to dex merger issues about duplicate entries. Open pull requests with the libraries that do this.
 1. You have a dependency that does not allow overrides of compileSdk, so you can't set the compileSdk to 28 as AndroidX requires: <https://github.com/razorpay/react-native-razorpay/pull/201>. This can lead to errors in resource merger where styles reference unknown attributes. Open pull requests with the libraries that do this
-1. For windows you must use WSL - we have reports it works, but also reports you may need to update WSL and install jetifier locally vs globally. It should work for you, but if you have updates to exactly how to make it work please propose a PR to this readme :hearts:
-   - from one of the success reports "installed jetifier from the Windows console, then I ran the the jetify command from WSL"
 
 So far there has not been a case of `npx jetify` failing that wasn't based in an error in a library, so if you have a problem please examine the error and the dependency very closely and help the libraries with fixes.
+
+### Getting it working in Windows
+
+Jetify is a batch script so you need WSL to make it work. However first install it from a Windows command prompt:
+
+    npm i --save-dev jetifier
+
+Then from WSL, you can run it using:
+
+    npx jetify
 
 ## Contributing
 
