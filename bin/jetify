@@ -4,7 +4,7 @@ MAPPING_FILE=$MAPPING_DIR/androidx-class-mapping.csv
 MAPPING_SED=$MAPPING_DIR/androidx-class-mapping.sed
 PROJECT_DIR=node_modules
 
-W=1
+W=20
 
 for j in "$@"
 do
@@ -37,7 +37,6 @@ jetify() {
   rm -f "$FILE.bak"
 }
 
-find . -type f -name "*_peaks.bed" ! -path "./tmp/*" ! -path "./scripts/*" 
 for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*' ! -path "*/android/app/build/*" ! -path "*/android/build/*"`; do
   (
   jetify $FILE
