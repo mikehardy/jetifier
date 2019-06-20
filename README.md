@@ -72,4 +72,10 @@ In testing, it appeared that performance improved up to the number of virtual co
 
 ## Contributing
 
-Please feel free to pull requests or log issues, especially to update versions if I somehow fail to notice an update. Thanks!
+Please feel free to pull requests or log issues, especially to update versions if I somehow fail to notice an update.
+
+I have [continuous integration enabled](https://travis-ci.com/mikehardy/jetifier) so we can prove changes work and you can make changes safely, it should pass those tests before you submit for review.
+
+You may need to fork the test suite [rn-androidx-demo](https://github.com/mikehardy/rn-androidx-demo) if you need to add a new react-native module to test, or if you are doing something other than modifying 'jetify' (for instance if you install a python or javascript version - you'll need to [copy the git version of your new script-under-test in rn-androidx-demo/make-demo.sh](https://github.com/mikehardy/rn-androidx-demo/blob/master/make-demo.sh#L76) so it is testing your changes). Then you would [alter the .travis.yml temporarily to point to your fork of rn-androidx-demo](https://github.com/mikehardy/jetifier/blob/master/.travis.yml#L38) so that your jetifier changes were working against the updated test suite. That's all pretty annoying and I will probably move the test suite so it is internal to jetifier in the future (PRs to do that welcome...)
+
+Thanks!
