@@ -47,6 +47,11 @@ for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml
   jetify $FILE
   ) &
   if [[ $(jobs -r -p | wc -l) -gt $W ]]; then
-    wait -n
+    # If bash is 4.3 or greater, do a fancy wait
+    if [ "${BASH_VERSINFO}" -lt 5 ]; then
+      wait
+    else
+      wait -n
+    fi
   fi
 done
