@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "11"
+script:
+  - git clone https://github.com/mikehardy/rn-androidx-demo.git
+  - cd rn-androidx-demo
+  - ./make-demo.sh 
