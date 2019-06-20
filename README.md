@@ -34,6 +34,13 @@ I demonstrate exactly this with a huge pile of native modules here: <https://git
 
 *Inspiration:* this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
 
+### To reverse-jetify / convert node_modules dependencies to Support Libraries
+
+So, you can't upgrade to AndroidX for some reason. But all your library dependencies are upgrading. You can convert them back with reverse-jetify mode
+
+Follow the instructions from above to convert to AndroidX, **but add the `r` flag.**
+Over time this will be less effective as more and more things convert, but with a combination of this in reverse-jetify mode, and using jetifier-standalone in reverse-jetifier mode to process jars/aars/zips you will be able to delay the transition indefinitely.
+
 ## Troubleshooting
 
 Unfortunately jetifier can't solve all your problems. Here are some reasons it could fail:

@@ -8,6 +8,7 @@ MAPPING_DIR=node_modules/jetifier/src
 MAPPING_FILE=$MAPPING_DIR/androidx-class-mapping.csv
 MAPPING_SED=$MAPPING_DIR/androidx-class-mapping.sed
 PROJECT_DIR=node_modules
+DIRECTION=forward
 
 W=20
 
@@ -16,6 +17,10 @@ do
   case $j in
     -w=*|--workers=*)
       W="${j#*=}"
+      shift
+      ;;
+    -r)
+      DIRECTION=reverse
       shift
       ;;
     *)
@@ -28,16 +33,24 @@ rm -f $MAPPING_SED
 echo "Creating new sed command from $MAPPING_FILE"
 while IFS=, read -r from to
 do
-  echo "s/$from/$to/g;" >> $MAPPING_SED
+  if [ "$DIRECTION" == "forward" ]; then
+    echo "s/$from/$to/g;" >> $MAPPING_SED
+  else
+    echo "s/$to/$from/g;" >> $MAPPING_SED
+  fi
 done <<< "$(cat $MAPPING_FILE)"
 
 # renderscript needs conversion, but is not an official conversion, add it
-echo "s/android.support.v8.renderscript/android.renderscript/g;" >> $MAPPING_SED
+if [ "$DIRECTION" == "forward" ]; then
+  echo "s/android.support.v8.renderscript/android.renderscript/g;" >> $MAPPING_SED
+else
+  echo "s/android.renderscript/android.support.v8.renderscript/g;" >> $MAPPING_SED
+fi
 
-echo "Command file for sed ready. Searching for files to jetify..."
+echo "Command file for sed ready. Searching for files to $DIRECTION-jetify..."
 
 jetify() {
-  echo "jetifying file $1"
+  echo "$DIRECTION-jetifying file $1"
   sed -i".bak" -f $MAPPING_SED $FILE
   rm -f "$FILE.bak"
 }
