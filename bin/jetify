@@ -4,7 +4,7 @@ MAPPING_FILE=$MAPPING_DIR/androidx-class-mapping.csv
 MAPPING_SED=$MAPPING_DIR/androidx-class-mapping.sed
 PROJECT_DIR=node_modules
 
-W=128
+W=1
 
 for j in "$@"
 do
