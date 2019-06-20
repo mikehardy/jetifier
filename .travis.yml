@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "11"
+before_install:
+  - npm i -g react-native
 script:
   - git clone https://github.com/mikehardy/rn-androidx-demo.git
   - cd rn-androidx-demo && ./make-demo.sh
