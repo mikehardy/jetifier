@@ -1,8 +1,47 @@
-language: node_js
-node_js:
-  - "11"
+language: android
+
+jdk:
+  - openjdk8
+
+env:
+  global:
+    # PATH order is incredibly important. e.g. the 'emulator' script exists in more than one place!
+    - ANDROID_HOME=/usr/local/android-sdk
+    - TOOLS=${ANDROID_HOME}/tools
+    - PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
+
+android:
+  components:
+    # installing tools to start, then use `sdkmanager` below to get the rest
+    - tools
+
+licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+# SDK Component Management
+install:
+  - echo 'count=0' > /home/travis/.android/repositories.cfg # Avoid harmless sdkmanager warning
+  - echo y | sdkmanager "platform-tools" >/dev/null
+  - echo y | sdkmanager "tools" >/dev/null # A second time per Travis docs, gets latest versions
+  - echo y | sdkmanager "build-tools;28.0.3" >/dev/null # Implicit gradle dependency - gradle drives changes
+  - echo y | sdkmanager "platforms;android-28" >/dev/null # We need the API of the current compileSdkVersion from gradle.properties
+
+
 before_install:
+  - nvm install 11
   - npm i -g react-native-cli
+
 script:
   - git clone https://github.com/mikehardy/rn-androidx-demo.git
   - cd rn-androidx-demo && ./make-demo.sh
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
