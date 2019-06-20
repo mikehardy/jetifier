@@ -23,8 +23,13 @@ If there was a way to take your react-native dependencies and convert them, then
 **There is a way**.
 
 1. Make sure your app is AndroidX (this is documented elsewhere but is just a refactor in Android Studio)
+<<<<<<< HEAD
 1. `npm install --save-dev jetifier` (or use yarn, but install it locally in your project, not globally)
 1. `npx jetify`
+=======
+1. `npm install jetifier` (or use yarn, or install it globally - just install the package)
+1. `npx jetify` or `npx jetify -w=4` to specify `4` parallel workers
+>>>>>>> added parallel worker specification prior to batching
 1. Get a cup of coffee, it takes a while. Performance improvements can come later.
 1. `npx react-native run-android` (this should compile and work)
 1. If it works, you should hook an `npx jetify` run in the postinstall target of your package.json so you don't forget to run it after installing or updating packages. There will be performance improvements soon (I think) which will make this less painful

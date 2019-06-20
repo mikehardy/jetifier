@@ -5,6 +5,21 @@ MAPPING_FILE=$MAPPING_DIR/androidx-class-mapping.csv
 MAPPING_SED=$MAPPING_DIR/androidx-class-mapping.sed
 PROJECT_DIR=node_modules
 
+W=1
+
+for j in "$@"
+do
+  case $j in
+    -w=*|--workers=*)
+      W="${j#*=}"
+      shift
+      ;;
+    *)
+      # unknown option
+      ;;
+  esac
+done
+
 rm -f $MAPPING_SED
 echo "Creating new sed command from $MAPPING_FILE"
 while IFS=, read -r from to
@@ -15,19 +30,17 @@ done <<< "$(cat $MAPPING_FILE)"
 # renderscript needs conversion, but is not an official conversion, add it
 echo "s/android.support.v8.renderscript/android.renderscript/g;" >> $MAPPING_SED
 
-echo "Command file for sed ready. Searching for files to jetify..."
+echo "Command file for sed ready, using $W workers. Searching for files to jetify..."
 
 jetify() {
-  echo "jetifying file $1"
+  echo "jetifying file $1 ($2)"
   sed -i -f $MAPPING_SED $FILE
 }
 
-N=4
-
 find . -type f -name "*_peaks.bed" ! -path "./tmp/*" ! -path "./scripts/*" 
 for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.kt" -o -name "*.xml" \) -type f -not -path '*/\.git*'`; do
-  ((i=i%N)); ((i++==0)) && wait
+  ((i=i%W)); ((i++==0)) && wait
   (
-    jetify $FILE &
+  jetify $FILE $i&
   )
 done
