@@ -18,7 +18,7 @@ Other than the npm-specific instructions, consult [the official jetifier documen
 Imagine you are a react-native project and one of your library dependencies converts to AndroidX.
 Now you need to convert your app, but react-native links source code directly and jetifier doesn't handle that.
 
-If there was a way to take your react-native dependencies and convert them, then you could convert your app and use AndroidX dependencies. 
+If there was a way to take your react-native dependencies and convert them, then you could convert your app and use AndroidX dependencies.
 
 **There is a way**.
 
