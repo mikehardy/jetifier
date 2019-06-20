@@ -11,6 +11,10 @@ while IFS=, read -r from to
 do
 	echo "s/$from/$to/g;" >> $MAPPING_SED
 done <<< "$(cat $MAPPING_FILE)"
+
+# renderscript needs conversion, but is not an official conversion, add it
+echo "s/android.support.v8.renderscript/android.renderscript/g;" >> $MAPPING_SED
+
 echo "Command file for sed ready. Searching for files to jetify..."
 
 for FILE in `find $PROJECT_DIR \( -name "*.java" -o -name "*.xml" \) -type f -not -path '*/\.git*' | sort`; do
