@@ -24,9 +24,9 @@ If there was a way to take your react-native dependencies and convert them, then
 
 1. Make sure your app is AndroidX (this is documented elsewhere but is just a refactor in Android Studio)
 1. `npm install --save-dev jetifier` (or use yarn, but install it locally in your project, not globally)
-1. `npx jetify` or `npx jetify -w=1` to specify the number of parallel workers
+1. `npx jetify` or `npx jetify -w=1` (to specify the number of parallel workers)
 1. `npx react-native run-android` (this should compile and work)
-1. If it works, you should hook an `npx jetify` run in the postinstall target of your package.json so you don't forget to run it after installing or updating packages. There will be performance improvements soon (I think) which will make this less painful
+1. If it works, you should hook an `npx jetify` run in the postinstall target of your package.json so you don't forget to run it after installing or updating packages
 
 Please note that any time you install a new dependency, or reinstall node modules, you will need to run `npx jetify` again.
 
@@ -58,6 +58,10 @@ Then from WSL, you can run it using:
 ...or if that doesn't work
 
     ./bin/node_modules/jetify
+
+### Performance (how to set workers parameter)
+
+In testing, it appeared that performance improved up to the number of virtual cores on a system, and then was flat but did not degrade after that no matter how many extra workers there were. So the default of 20 should result in maximum performance on even powerful systems, but smaller CI virtual machines should be fine as well. Your mileage may vary.
 
 ## Contributing
 
