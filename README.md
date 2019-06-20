@@ -46,13 +46,19 @@ So far there has not been a case of `npx jetify` failing that wasn't based in an
 
 ### Getting it working in Windows
 
-Jetify is a batch script so you need WSL to make it work. However first install it from a Windows command prompt:
+Jetify is a bash script so you need an updated WSL to make it work with bash, find and sed installed.
+
+First install jetifier from a Windows command prompt:
 
     npm i --save-dev jetifier
 
 Then from WSL, you can run it using:
 
     npx jetify
+
+...or if that doesn't work
+
+    ./bin/node_modules/jetify
 
 ## Contributing
 
