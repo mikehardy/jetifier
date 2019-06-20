@@ -8,7 +8,7 @@
     "jetify": "./bin/jetify"
   },
   "scripts": {
-    "dev-sync": "cp -rv bin index.js lib package.json src ../../Kullki/kscoreapp-rxp/node_modules/jetifier",
+    "dev-sync": "cp -rv bin index.js lib package.json src ../rn-androidx-demo/rnandroidxdemo/node_modules/jetifier",
     "shipit": "np",
     "test": ""
   },
