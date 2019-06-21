@@ -2,7 +2,53 @@
 
 The jetifier AdnroidX transition tool in npm format, with a react-native compatible style
 
+## Do you need this?
+
+If you use React Native modules with native Java code that isn't converted to AndroidX, and your app is AndroidX, you probably need this.
+
+Why?
+
+The [standard AndroidX migration](https://developer.android.com/jetpack/androidx/migrate) rewrites your **current** installed source code, and at build time dynamically re-writes any linked jar/aar/zip files. This is all a "normal" Android app needs.
+
+React Native apps are not standard Android apps. React Native modules with native Java code usually distribute that code as source, and link the source code directly. 
+
+When you update your modules (or install them again after following the standard AndroidX migration), the freshly installed Java code from your react-native dependencies will not be translated to AndroidX anymore, and your build will fail.
+
+So you have to perform an AndroidX migration on your linked source every time you update react native modules that ship native Java code. That is what this tool does - it can rewrite the source in node_modules every time you call it.
+
+## Usage for source files
+
+### To jetify / convert node_modules dependencies to AndroidX
+
+Imagine you have a react-native project. [One of your library dependencies converts to AndroidX.](https://developers.google.com/android/guides/releases#june_17_2019), and you need to use the new version.
+
+So now you need to convert your app to AndroidX, but many of your react-native libraries ship native Java code and have not updated. How can you do it?
+
+1. Convert your app to AndroidX via the [standard AndroidX migration](https://developer.android.com/jetpack/androidx/migrate)
+1. `npm install --save-dev jetifier` (or use yarn, but install it locally in your project, not globally)
+1. `npx jetify` or `npx jetify -w=1` (to specify the number of parallel workers)
+1. `npx react-native run-android` (your app should correctly compile and work)
+1. Call `npx jetify` run in the postinstall target of your package.json (Any time your dependencies update you have to jetify again)
+
+Proof it works / how this is tested: <https://github.com/mikehardy/rn-androidx-demo>. You can clone that repo, run the script, and see it works. Please feel to make PRs to that repo, especially in App.js or in the dependencies included, if you would like to demonstrate success or failure for a specific module.
+
+*Inspiration:* this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
+
+### To reverse-jetify / convert node_modules dependencies to Support Libraries
+
+Maybe you are in the position where you must not migrate to AndroidX yet. But your libraries have started to migrate and they ship AndroidX native Java code.
+
+You can convert them back with reverse-jetify mode
+
+Follow the instructions from above to convert to AndroidX, **but add the `-r` flag to the `npx jetify` call.**
+
+If a library ships only as a jar/aar/zip file, you will have to use jetifier-standalone to convert that as well, but you can delay the AndroidX migration indefinitely with this style.
+
 ## Usage for jar/zip/aar files
+
+You may be a library maintainer, wanting to ship an AAR of your support code converted to AndroidX, or maybe you ship an AAR normally and you want to continue to support your non-AndroidX users even after you convert your library to AndroidX?
+
+As part of your build process you can use this tool like so:
 
 1. `npm install jetifier` (or maybe `npm install -g jetifier` to make it globally available)
 1. `npx jetifier-standalone <your arguments here>` (use `npx jetifier-standalone -h` for help)
@@ -11,35 +57,7 @@ I have not altered the jetifier-standalone distribution in any way.
 
 Other than the npm-specific instructions, consult [the official jetifier documentation](https://developer.android.com/studio/command-line/jetifier)
 
-## Usage for source files
-
-### To jetify / convert node_modules dependencies to AndroidX
-
-Imagine you are a react-native project and one of your library dependencies converts to AndroidX.
-Now you need to convert your app, but react-native links source code directly and jetifier doesn't handle that.
-
-If there was a way to take your react-native dependencies and convert them, then you could convert your app and use AndroidX dependencies.
-
-**There is a way**.
-
-1. Make sure your app is AndroidX (this is documented elsewhere but is just a refactor in Android Studio)
-1. `npm install --save-dev jetifier` (or use yarn, but install it locally in your project, not globally)
-1. `npx jetify` or `npx jetify -w=1` (to specify the number of parallel workers)
-1. `npx react-native run-android` (this should compile and work)
-1. If it works, you should hook an `npx jetify` run in the postinstall target of your package.json so you don't forget to run it after installing or updating packages
-
-Please note that any time you install a new dependency, or reinstall node modules, you will need to run `npx jetify` again.
-
-I demonstrate exactly this with a huge pile of native modules here: <https://github.com/mikehardy/rn-androidx-demo>. You can clone that repo, run the script, and see it works. Please feel to make PRs to that repo, especially in App.js or in the dependencies included, if you would like to demonstrate success or failure for a specific module.
-
-*Inspiration:* this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
-
-### To reverse-jetify / convert node_modules dependencies to Support Libraries
-
-So, you can't upgrade to AndroidX for some reason. But all your library dependencies are upgrading. You can convert them back with reverse-jetify mode
-
-Follow the instructions from above to convert to AndroidX, **but add the `r` flag.**
-Over time this will be less effective as more and more things convert, but with a combination of this in reverse-jetify mode, and using jetifier-standalone in reverse-jetifier mode to process jars/aars/zips you will be able to delay the transition indefinitely.
+**Note that this is implemented for you if you [integrate the bob build tool](https://github.com/react-native-community/bob/blob/master/README.md#L44)**
 
 ## Troubleshooting
 
@@ -66,13 +84,15 @@ Then from WSL, you can run it using:
 
     ./bin/node_modules/jetify
 
-### Performance (how to set workers parameter)
+### Performance Notes (how to set workers parameter)
 
 In testing, it appeared that performance improved up to the number of virtual cores on a system, and then was flat but did not degrade after that no matter how many extra workers there were. So the default of 20 should result in maximum performance on even powerful systems, but smaller CI virtual machines should be fine as well. Your mileage may vary.
 
 ## Contributing
 
 Please feel free to pull requests or log issues, especially to update versions if I somehow fail to notice an update.
+
+I have tried to make it easy for contributors to propose changes, by providing a test suite so you can safely make a change and see if it works.
 
 I have [continuous integration enabled](https://travis-ci.com/mikehardy/jetifier) so we can prove changes work and you can make changes safely, it should pass those tests before you submit for review.
 
