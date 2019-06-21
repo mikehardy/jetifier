@@ -29,6 +29,10 @@ do
   esac
 done
 
+if [ "${BASH_VERSINFO}" -lt 5 ]; then
+  echo "INFO: bash version lower than 5.x. Performance is better with 5.x"
+fi
+
 rm -f $MAPPING_SED
 echo "Creating new sed command from $MAPPING_FILE"
 while IFS=, read -r from to

@@ -86,7 +86,11 @@ Then from WSL, you can run it using:
 
 ### Performance Notes (how to set workers parameter)
 
-In testing, it appeared that performance improved up to the number of virtual cores on a system, and then was flat but did not degrade after that no matter how many extra workers there were. So the default of 20 should result in maximum performance on even powerful systems, but smaller CI virtual machines should be fine as well. Your mileage may vary.
+In testing, it appeared that performance improved up to the number of virtual cores on a system, and then was flat but did not degrade after that no matter how many extra workers there were. So the default of 20 should result in maximum performance on even powerful systems, but smaller CI virtual machines should be fine as well. 
+
+You will want a bash version of 5 or higher for best results. bash version 4.x ships as the default on macOS up to at least 10.14.5. Replacing the system bash with a modern bash from (for example) brew is your responsibility if you want higher performance.
+
+Your mileage may vary.
 
 ## Contributing
 
