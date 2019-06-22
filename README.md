@@ -1,6 +1,21 @@
-# jetifier
+
+[![npm version](https://badge.fury.io/js/jetifier.svg)](http://badge.fury.io/js/jetifier)
+[![npm total downloads](https://img.shields.io/npm/dt/jetifier.svg)](https://img.shields.io/npm/dt/jetifier.svg)
+[![npm monthly downloads](https://img.shields.io/npm/dm/jetifier.svg)](https://img.shields.io/npm/dm/jetifier.svg)
+[![npm weekly downloads](https://img.shields.io/npm/dw/jetifier.svg)](https://img.shields.io/npm/dw/jetifier.svg)
 
 The jetifier AdnroidX transition tool in npm format, with a react-native compatible style
+
+## TOC
+
+* [Why?](#do_you_need_this)
+* [Convert to AndroidX](#to-jetify--convert-node_modules-dependencies-to-androidx)
+* [Convert to Support Libraries](#to-reverse-jetify--convert-node_modules-dependencies-to-support-libraries)
+* [Convert JAR/AAR/ZIP files](#usage-for-jarzipaar-files)
+* [Troubleshooting](#troubleshooting)
+* [Windows Notes](#getting-it-working-in-windows)
+* [Performance Notes](#performance-notes-how-to-set-workers-parameter)
+* [Contributing](#contributing)
 
 ## Do you need this?
 
