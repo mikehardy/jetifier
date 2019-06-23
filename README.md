@@ -4,7 +4,7 @@
 [![npm monthly downloads](https://img.shields.io/npm/dm/jetifier.svg)](https://img.shields.io/npm/dm/jetifier.svg)
 [![npm weekly downloads](https://img.shields.io/npm/dw/jetifier.svg)](https://img.shields.io/npm/dw/jetifier.svg)
 
-The jetifier AdnroidX transition tool in npm format, with a react-native compatible style
+The jetifier AndroidX transition tool in npm format, with a react-native compatible style
 
 ## TOC
 
@@ -25,7 +25,7 @@ Why?
 
 The [standard AndroidX migration](https://developer.android.com/jetpack/androidx/migrate) rewrites your **current** installed source code, and at build time dynamically re-writes any linked jar/aar/zip files. This is all a "normal" Android app needs.
 
-React Native apps are not standard Android apps. React Native modules with native Java code usually distribute that code as source, and link the source code directly. 
+React Native apps are not standard Android apps. React Native modules with native Java code usually distribute that code as source, and link the source code directly.
 
 When you update your modules (or install them again after following the standard AndroidX migration), the freshly installed Java code from your react-native dependencies will not be translated to AndroidX anymore, and your build will fail.
 
@@ -101,7 +101,7 @@ Then from WSL, you can run it using:
 
 ### Performance Notes (how to set workers parameter)
 
-In testing, it appeared that performance improved up to the number of virtual cores on a system, and then was flat but did not degrade after that no matter how many extra workers there were. So the default of 20 should result in maximum performance on even powerful systems, but smaller CI virtual machines should be fine as well. 
+In testing, it appeared that performance improved up to the number of virtual cores on a system, and then was flat but did not degrade after that no matter how many extra workers there were. So the default of 20 should result in maximum performance on even powerful systems, but smaller CI virtual machines should be fine as well.
 
 You will want a bash version of 5 or higher for best results. bash version 4.x ships as the default on macOS up to at least 10.14.5. Replacing the system bash with a modern bash from (for example) brew is your responsibility if you want higher performance.
 
