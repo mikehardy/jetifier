@@ -18,11 +18,8 @@ var readDir = (dir, filesList = []) => {
 
 const loadCSV = () => {
   const csvFilePath = join(__dirname, 'androidx-class-mapping.csv');
-
-  //remove any empty lines from the loaded csv
-  const csvFileContent = readFileSync(csvFilePath, { encoding: 'utf8' }).replace(/^\s*[\r\n]/gm, '');
-  
-  const lines = csvFileContent.split('\n');
+  const lines = readFileSync(csvFilePath, { encoding: 'utf8' }).split('\n');
+  lines.pop(); // last element will always be an empty line so removing it from the array
   const result = {};
   for (let line of lines) {
     const oldValue = line.split(',')[0];
