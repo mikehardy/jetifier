@@ -25,6 +25,10 @@ const loadCSV = () => {
     const newValue = line.split(',')[1];
     result[oldValue] = newValue;
   }
+
+  // renderscript must be added to the canonical androidx-class-mapping.csv - it is not upstream
+  result['android.support.v8.renderscript'] = 'android.renderscript';
+
   return result;
 }
 
