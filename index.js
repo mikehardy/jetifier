@@ -2,7 +2,7 @@ const { readFileSync, writeFileSync } = require('fs');
 const { loadCSV, readDir } = require('./src/utils');
 
 const arg = process.argv.slice(2)[0];
-const mode = arg && arg === 'reverse' ? 'reverse' : 'forward';
+const mode = arg && ((arg === 'reverse') || (arg === '-r')) ? 'reverse' : 'forward';
 
 const SEARCH_DIR = 'node_modules';
 
