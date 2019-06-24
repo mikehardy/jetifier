@@ -10,6 +10,11 @@ env:
     - ANDROID_HOME=/usr/local/android-sdk
     - TOOLS=${ANDROID_HOME}/tools
     - PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
+  matrix:
+    - NODE=8
+    - NODE=10
+    - NODE=11
+    - NODE=node
 
 android:
   components:
@@ -31,7 +36,7 @@ install:
 
 
 before_install:
-  - nvm install 11
+  - nvm install $NODE
   - npm i -g react-native-cli
 
 script:
