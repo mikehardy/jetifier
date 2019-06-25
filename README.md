@@ -13,6 +13,7 @@ The jetifier AndroidX transition tool in npm format, with a react-native compati
 * [Convert to Support Libraries](#to-reverse-jetify--convert-node_modules-dependencies-to-support-libraries)
 * [Convert JAR/AAR/ZIP files](#usage-for-jarzipaar-files)
 * [Troubleshooting](#troubleshooting)
+* [Module Maintainers](#module-maintainers)
 * [Contributing](#contributing)
 
 ## Do you need this?
@@ -81,6 +82,19 @@ Unfortunately jetifier can't solve all your problems. Here are some reasons it c
 1. There used to be a big section on Windows troubleshooting because the original implementation was bash+sed, but [Yassine Fathi](m4tt72) contributed a node port and now it just runs. If it the new node version isn't working for you, `./node_modules/bin/jetify.sh` is still present in the archive and you can try it
 
 So far there has not been a case of `npx jetify` failing that wasn't based in an error in a library, so if you have a problem please examine the error and the dependency very closely and help the libraries with fixes.
+
+## Module Maintainers
+
+One of the goals of this library is to enable module maintainers to support their AndroidX app users and their pre-AndroidX users at the same time, from the same codebase, so the react-native 0.59 -> 0.60 transition is smoother.
+
+Maintainers will potentially have to make a few changes for that to work well though.
+
+Here are the areas libraries may need to change to work well for AndroidX and pre-AndroidX apps at the same time:
+
+1. Dependency version overrides. In your library, all of your dependencies and your SDK versions should have version overrides. These offer your users flexibility to pin the versions to pre-AndroidX or AndroidX versions. Example: <https://github.com/razorpay/react-native-razorpay/pull/201> and showing ability to be very specific: <https://github.com/react-native-community/react-native-camera/blob/master/android/build.gradle#L78>
+1. AppCompat library *name* overrides - this may seem odd, but if you depend on the appcompat library itself, the whole name may need to be overridden to work correctly on RN0.60. Here is an example: <https://github.com/react-native-community/react-native-maps/commit/0c76619e8b4d591265348beb83f315ad05311670>
+1. There may be unexpected problems like one of your dependencies is doing something wrong, but it's not really your fault - razorpay had that problem <https://github.com/razorpay/react-native-razorpay/pull/201> - keep an open mind about the fixes and there is probably something you can do without giving up on forwards and backwards compatibility during the transition
+1. Finally, not really related to AndroidX, but you may simply have to make some changes related to the new auto-linking. <https://github.com/react-native-community/cli/blob/master/docs/dependencies.md>
 
 ## Contributing
 
