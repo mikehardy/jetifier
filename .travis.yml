@@ -11,10 +11,14 @@ env:
     - TOOLS=${ANDROID_HOME}/tools
     - PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
   matrix:
-    - NODE=8
-    - NODE=10
-    - NODE=11
-    - NODE=node
+    - RNVERSION=59 NODE=8
+    - RNVERSION=59 NODE=10
+    - RNVERSION=59 NODE=11
+    - RNVERSION=59 NODE=node
+    - RNVERSION=60 NODE=8
+    - RNVERSION=60 NODE=10
+    - RNVERSION=60 NODE=11
+    - RNVERSION=60 NODE=node
 
 android:
   components:
