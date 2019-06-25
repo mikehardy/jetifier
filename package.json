@@ -25,6 +25,13 @@
     "androidx"
   ],
   "author": "Mike Hardy (github@mikehardy.net)",
+  "contributors": [
+    {
+      "name": "Yassine Fathi",
+      "email": "yassine@flui.city",
+      "url": "https://github.com/m4tt72"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mikehardy/jetifier/issues"

@@ -13,8 +13,6 @@ The jetifier AndroidX transition tool in npm format, with a react-native compati
 * [Convert to Support Libraries](#to-reverse-jetify--convert-node_modules-dependencies-to-support-libraries)
 * [Convert JAR/AAR/ZIP files](#usage-for-jarzipaar-files)
 * [Troubleshooting](#troubleshooting)
-* [Windows Notes](#getting-it-working-in-windows)
-* [Performance Notes](#performance-notes-how-to-set-workers-parameter)
 * [Contributing](#contributing)
 
 ## Do you need this?
@@ -40,8 +38,8 @@ Imagine you have a react-native project. [One of your library dependencies conve
 So now you need to convert your app to AndroidX, but many of your react-native libraries ship native Java code and have not updated. How can you do it?
 
 1. Convert your app to AndroidX via the [standard AndroidX migration](https://developer.android.com/jetpack/androidx/migrate)
-1. `npm install --save-dev jetifier` (or use yarn, but install it locally in your project, not globally)
-1. `npx jetify` or `npx jetify -w=1` (to specify the number of parallel workers)
+1. `npm install --save-dev jetifier`
+1. `npx jetify`
 1. `npx react-native run-android` (your app should correctly compile and work)
 1. Call `npx jetify` run in the postinstall target of your package.json (Any time your dependencies update you have to jetify again)
 
@@ -80,32 +78,9 @@ Unfortunately jetifier can't solve all your problems. Here are some reasons it c
 
 1. You have a dependency that packages things in violation of Android packaging rules, like including an extra AndroidManifest.xml or similar: <https://github.com/acaziasoftcom/react-native-bottomsheet/pull/23> - this will lead to dex merger issues about duplicate entries. Open pull requests with the libraries that do this.
 1. You have a dependency that does not allow overrides of compileSdk, so you can't set the compileSdk to 28 as AndroidX requires: <https://github.com/razorpay/react-native-razorpay/pull/201>. This can lead to errors in resource merger where styles reference unknown attributes. Open pull requests with the libraries that do this
+1. There used to be a big section on Windows troubleshooting because the original implementation was bash+sed, but [Yassine Fathi](m4tt72) contributed a node port and now it just runs. If it the new node version isn't working for you, `./node_modules/bin/jetify.sh` is still present in the archive and you can try it
 
 So far there has not been a case of `npx jetify` failing that wasn't based in an error in a library, so if you have a problem please examine the error and the dependency very closely and help the libraries with fixes.
-
-### Getting it working in Windows
-
-Jetify is a bash script so you need an updated WSL to make it work with bash, find and sed installed.
-
-First install jetifier from a Windows command prompt:
-
-    npm i --save-dev jetifier
-
-Then from WSL, you can run it using:
-
-    npx jetify
-
-...or if that doesn't work
-
-    ./bin/node_modules/jetify
-
-### Performance Notes (how to set workers parameter)
-
-In testing, it appeared that performance improved up to the number of virtual cores on a system, and then was flat but did not degrade after that no matter how many extra workers there were. So the default of 20 should result in maximum performance on even powerful systems, but smaller CI virtual machines should be fine as well.
-
-You will want a bash version of 5 or higher for best results. bash version 4.x ships as the default on macOS up to at least 10.14.5. Replacing the system bash with a modern bash from (for example) brew is your responsibility if you want higher performance.
-
-Your mileage may vary.
 
 ## Contributing
 
