@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+- node version courtesy of [Yassine Fathi](@m4tt72)! Super fast, no bash needed! It's amazing
+
 ## 1.4.2
 
 - No code changes
