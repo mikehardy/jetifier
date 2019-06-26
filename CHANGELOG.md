@@ -1,8 +1,12 @@
 # Changelog
 
+## 1.5.1
+
+- add CRLF/LF compatibility, fix potential bug with empty line on mapping @m4tt72 :rocket:
+
 ## 1.5.0
 
-- node version courtesy of [Yassine Fathi](@m4tt72)! Super fast, no bash needed! It's amazing
+- node version courtesy of Yassine Fathi / @m4tt72! Super fast, no bash needed! It's amazing :fire:
 
 ## 1.4.2
 
