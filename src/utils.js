@@ -1,7 +1,7 @@
 const { readFileSync, readdirSync, statSync } = require('fs');
 const { join } = require('path');
 
-var readDir = (dir, filesList = []) => {
+const readDir = (dir, filesList = []) => {
   const files = readdirSync(dir);
   for (let file of files) {
     if (statSync(dir + '/' + file).isDirectory()) {
@@ -18,8 +18,13 @@ var readDir = (dir, filesList = []) => {
 
 const loadCSV = () => {
   const csvFilePath = join(__dirname, 'androidx-class-mapping.csv');
-  const lines = readFileSync(csvFilePath, { encoding: 'utf8' }).split('\n');
-  lines.pop(); // last element will always be an empty line so removing it from the array
+  const lines = readFileSync(csvFilePath, { encoding: 'utf8' }).split(/\r?\n/);
+  
+  // last element will always be an empty line so removing it from the array
+  if(lines[lines.length - 1] === "") {
+    lines.pop(); 
+  }
+  
   const result = {};
   for (let line of lines) {
     const oldValue = line.split(',')[0];
