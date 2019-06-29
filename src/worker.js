@@ -16,7 +16,7 @@ process.on('message', ({ filesChunk, classesMapping, mode }) => {
     }
   }
 
-  console.log(`${mode}-jetifyied ${filesChunk.length} file(s)`);
+  console.log(`${mode}-jetified ${filesChunk.length} file(s)`);
 
   process.exit(0);
 });
