@@ -1,31 +1,36 @@
 language: generic
 sudo: true
 
-os:
-  - osx
-  - linux
-
 env:
   global:
     # PATH order is incredibly important. e.g. the 'emulator' script exists in more than one place!
     - ANDROID_HOME=/usr/local/android-sdk
     - TOOLS=${ANDROID_HOME}/tools
     - PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
-  matrix:
-    #- RNVERSION=59 NODE=8
-    #- RNVERSION=59 NODE=10
-    - RNVERSION=59 NODE=11
-    - RNVERSION=59 NODE=node
-    #- RNVERSION=60 NODE=8
-    #- RNVERSION=60 NODE=10
-    - RNVERSION=60 NODE=11
-    #- RNVERSION=60 NODE=node
 
-jobs:
+matrix:
   fast_finish: true
-#  include:
-#    - os: osx
-#      RNVERSION=60 NODE=11
+  include:
+    - os: osx
+      osx_image: xcode10.2
+      env: RNVERSION=59 NODE=8
+    - os: osx
+      osx_image: xcode10.2
+      env: RNVERSION=59 NODE=10
+    - os: osx
+      osx_image: xcode10.2
+      env: RNVERSION=60 NODE=11
+    - os: osx
+      osx_image: xcode10.2
+      env: RNVERSION=60 NODE=node
+    - os: linux
+      env: RNVERSION=59 NODE=11
+    - os: linux
+      env: RNVERSION=59 NODE=node
+    - os: linux
+      env: RNVERSION=60 NODE=8
+    - os: linux
+      env: RNVERSION=60 NODE=10
   allow_failures:
     - env: RNVERSION=60 NODE=node
 
