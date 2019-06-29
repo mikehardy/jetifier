@@ -11,7 +11,7 @@ const SEARCH_DIR = 'node_modules';
 const classesMapping = getClassesMapping();
 const files = readDir(SEARCH_DIR);
 
-console.log(`Found ${files.length} file(s)...`);
+console.log(`Jetifier found ${files.length} file(s) to ${mode}-jetify. Using ${cpus} workers...`);
 
 for (const filesChunk of chunk(files, cpus)) {
   const worker = fork(join(__dirname, 'src', 'worker.js'));
