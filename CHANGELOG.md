@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.0
+
+- feat: parallel jetifier - speedup x cpu count, @m4tt72 making your installs fast :muscle:
+- test: exercise macOS in CI alongside linux
+
 ## 1.5.1
 
 - add CRLF/LF compatibility, fix potential bug with empty line on mapping @m4tt72 :rocket:
