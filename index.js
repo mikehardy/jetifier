@@ -1,21 +1,19 @@
-const { readFileSync, writeFileSync } = require('fs');
-const { loadCSV, readDir } = require('./src/utils');
+const { fork } = require('child_process');
+const { join } = require('path');
+const { getClassesMapping, readDir, chunk } = require('./src/utils');
+
+const cpus = require('os').cpus().length;
 
 const arg = process.argv.slice(2)[0];
 const mode = arg && ((arg === 'reverse') || (arg === '-r')) ? 'reverse' : 'forward';
-
 const SEARCH_DIR = 'node_modules';
 
-const csv = loadCSV();
+const classesMapping = getClassesMapping();
 const files = readDir(SEARCH_DIR);
 
-for (const file of files) {
-  let data = readFileSync(file, { encoding: 'utf8' });
-  for (const c in csv) {
-    if (data.includes(mode === 'forward' ? c : csv[c])) {
-      console.log(`${mode}-jetifying: ${file}`);
-      data = mode === 'forward' ? data.replace(new RegExp(c, 'g'), csv[c]) : data.replace(new RegExp(csv[c], 'g'), c);
-      writeFileSync(file, data, { encoding: 'utf8' });
-    }
-  }
+console.log(`Jetifier found ${files.length} file(s) to ${mode}-jetify. Using ${cpus} workers...`);
+
+for (const filesChunk of chunk(files, cpus)) {
+  const worker = fork(join(__dirname, 'src', 'worker.js'));
+  worker.send({ filesChunk, classesMapping, mode });
 }
