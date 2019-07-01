@@ -79,7 +79,7 @@ Unfortunately jetifier can't solve all your problems. Here are some reasons it c
 
 1. You have a dependency that packages things in violation of Android packaging rules, like including an extra AndroidManifest.xml or similar: <https://github.com/acaziasoftcom/react-native-bottomsheet/pull/23> - this will lead to dex merger issues about duplicate entries. Open pull requests with the libraries that do this.
 1. You have a dependency that does not allow overrides of compileSdk, so you can't set the compileSdk to 28 as AndroidX requires: <https://github.com/razorpay/react-native-razorpay/pull/201>. This can lead to errors in resource merger where styles reference unknown attributes. Open pull requests with the libraries that do this
-1. There used to be a big section on Windows troubleshooting because the original implementation was bash+sed, but [Yassine Fathi](m4tt72) contributed a node port and now it just runs. If it the new node version isn't working for you, `./node_modules/bin/jetify.sh` is still present in the archive and you can try it
+1. You are missing the 'node-pre-gyp' package - you may see this error `ENOENT: no such file or directory, stat 'node_modules/fsevents/node_modules/.bin/node-pre-gyp'` - if so try something like `npm -i -g node-pre-gyp`, see #22
 
 So far there has not been a case of `npx jetify` failing that wasn't based in an error in a library, so if you have a problem please examine the error and the dependency very closely and help the libraries with fixes.
 
