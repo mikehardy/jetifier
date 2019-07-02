@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1
+
+- docs(README): just docs changes but this gets them out on npmjs.com
+
 ## 1.6.0
 
 - feat: parallel jetifier - speedup x cpu count, @m4tt72 making your installs fast :muscle:
