@@ -1,4 +1,3 @@
-
 [![npm version](https://badge.fury.io/js/jetifier.svg)](http://badge.fury.io/js/jetifier)
 [![npm total downloads](https://img.shields.io/npm/dt/jetifier.svg)](https://img.shields.io/npm/dt/jetifier.svg)
 [![npm monthly downloads](https://img.shields.io/npm/dm/jetifier.svg)](https://img.shields.io/npm/dm/jetifier.svg)
@@ -8,13 +7,13 @@ The jetifier AndroidX transition tool in npm format, with a react-native compati
 
 ## TOC
 
-* [Why?](#do_you_need_this)
-* [Convert to AndroidX](#to-jetify--convert-node_modules-dependencies-to-androidx)
-* [Convert to Support Libraries](#to-reverse-jetify--convert-node_modules-dependencies-to-support-libraries)
-* [Convert JAR/AAR/ZIP files](#usage-for-jarzipaar-files)
-* [Troubleshooting](#troubleshooting)
-* [Module Maintainers](#module-maintainers)
-* [Contributing](#contributing)
+- [Why?](#do_you_need_this)
+- [Convert to AndroidX](#to-jetify--convert-node_modules-dependencies-to-androidx)
+- [Convert to Support Libraries](#to-reverse-jetify--convert-node_modules-dependencies-to-support-libraries)
+- [Convert JAR/AAR/ZIP files](#usage-for-jarzipaar-files)
+- [Troubleshooting](#troubleshooting)
+- [Module Maintainers](#module-maintainers)
+- [Contributing](#contributing)
 
 ## Do you need this?
 
@@ -36,9 +35,9 @@ So you have to perform an AndroidX migration on your linked source every time yo
 
 Imagine you have a react-native project. [One of your library dependencies converts to AndroidX.](https://developers.google.com/android/guides/releases#june_17_2019), and you need to use the new version.
 
-So now you need to convert your app to AndroidX, but many of your react-native libraries ship native Java code and have not updated. How can you do it?
+So now you need to convert your app to AndroidX, but many of your react-native libraries ship native Java code and have not updated. How is this done?
 
-1. Convert your app to AndroidX via the [standard AndroidX migration](https://developer.android.com/jetpack/androidx/migrate)
+1. First, use Android Studio's refactoring tool to convert your app re: the [Android developer docs](https://developer.android.com/jetpack/androidx/migrate)
 1. `npm install --save-dev jetifier`
 1. `npx jetify`
 1. `npx react-native run-android` (your app should correctly compile and work)
@@ -46,7 +45,7 @@ So now you need to convert your app to AndroidX, but many of your react-native l
 
 Proof it works / how this is tested: <https://github.com/mikehardy/rn-androidx-demo>. You can clone that repo, run the script, and see it works. Please feel to make PRs to that repo, especially in App.js or in the dependencies included, if you would like to demonstrate success or failure for a specific module.
 
-*Inspiration:* this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
+_Inspiration:_ this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
 
 ### To reverse-jetify / convert node_modules dependencies to Support Libraries
 
@@ -93,7 +92,7 @@ Maintainers will potentially have to make a few changes for that to work well th
 Here are the areas libraries may need to change to work well for AndroidX and pre-AndroidX apps at the same time:
 
 1. Dependency version overrides. In your library, all of your dependencies and your SDK versions should have version overrides. These offer your users flexibility to pin the versions to pre-AndroidX or AndroidX versions. Example: <https://github.com/razorpay/react-native-razorpay/pull/201> and showing ability to be very specific: <https://github.com/react-native-community/react-native-camera/blob/master/android/build.gradle#L78>
-1. AppCompat library *name* overrides - this may seem odd, but if you depend on the appcompat library itself, the whole name may need to be overridden to work correctly on RN0.60. Here is an example: <https://github.com/react-native-community/react-native-maps/commit/0c76619e8b4d591265348beb83f315ad05311670>
+1. AppCompat library _name_ overrides - this may seem odd, but if you depend on the appcompat library itself, the whole name may need to be overridden to work correctly on RN0.60. Here is an example: <https://github.com/react-native-community/react-native-maps/commit/0c76619e8b4d591265348beb83f315ad05311670>
 1. There may be unexpected problems like one of your dependencies is doing something wrong, but it's not really your fault - bottomsheet had that problem <https://github.com/acaziasoftcom/react-native-bottomsheet/pull/23> - keep an open mind about the fixes and there is probably something you can do without giving up on forwards and backwards compatibility during the transition
 1. Do not use wildcard imports of support library classes, but you don't need to convert to AndroidX to fix them. Just make a patch release with the concrete imports like react-native-navigation - <https://github.com/wix/react-native-navigation/pull/5218/files>
 1. Finally, not really related to AndroidX, but you may simply have to make some changes related to the new auto-linking. <https://github.com/react-native-community/cli/blob/master/docs/dependencies.md>
