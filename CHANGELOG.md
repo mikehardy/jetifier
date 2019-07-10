@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.2
+
+- fix: check file exists before stat / fixes monorepos (#30) thanks @hampustagerud!
+- docs(README): clarify usage task list - thanks @Twitchkidd!
+
 ## 1.6.1
 
 - docs(README): just docs changes but this gets them out on npmjs.com
