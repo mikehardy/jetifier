@@ -1,4 +1,4 @@
-const { readFileSync, readdirSync, statSync } = require('fs');
+const { existsSync, readFileSync, readdirSync, statSync } = require('fs');
 const { join } = require('path');
 
 const chunk = (array, chunkSize) => {
@@ -13,12 +13,16 @@ const chunk = (array, chunkSize) => {
 const readDir = (dir, filesList = []) => {
   const files = readdirSync(dir);
   for (let file of files) {
-    if (statSync(dir + '/' + file).isDirectory()) {
-      filesList = readDir(dir + '/' + file, filesList);
-    }
-    else {
-      if (file.endsWith('.java') || file.endsWith('.xml') || file.endsWith('.kt')) {
-        filesList.push(dir + '/' + file);
+    const filePath = join(dir, file);
+
+    if (existsSync(filePath)) {
+      if (statSync(filePath).isDirectory()) {
+        filesList = readDir(filePath, filesList);
+      }
+      else {
+        if (file.endsWith('.java') || file.endsWith('.xml') || file.endsWith('.kt')) {
+          filesList.push(filePath);
+        }
       }
     }
   }
