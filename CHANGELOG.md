@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.3
+- fix: avoid substring/superstring shadowing in regex (#32) thanks @mysport12!
+
 ## 1.6.2
 
 - fix: check file exists before stat / fixes monorepos (#30) thanks @hampustagerud!
