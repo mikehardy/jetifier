@@ -9,11 +9,12 @@ const mode = args.find(arg => (arg === 'reverse') || (arg === '-r')) ? 'reverse'
 const monorepo = !!args.find(arg =>  arg === '--monorepo') || false;
 const SEARCH_DIR = 'node_modules';
 
+const packagesFiles = [];
 if (monorepo) {
   const projectPath = resolve('.');
   const packages = require('get-yarn-workspaces')(projectPath);
   const packagesSearchDir = packages.map(package => join(package, SEARCH_DIR));
-  const packagesFiles = packagesSearchDir.reduce((acc, dir) => [...acc, ...readDir(dir)], []);
+  packagesFiles = packagesSearchDir.reduce((acc, dir) => [...acc, ...readDir(dir)], []);
 }
 
 const classesMapping = getClassesMapping();
