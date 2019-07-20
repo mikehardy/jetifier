@@ -37,6 +37,9 @@
     "url": "https://github.com/mikehardy/jetifier/issues"
   },
   "homepage": "https://github.com/mikehardy/jetifier#readme",
+  "dependencies": {
+    "get-yarn-workspaces": "^1.0.2"
+  },
   "devDependencies": {
     "np": "^5.0.3"
   }
