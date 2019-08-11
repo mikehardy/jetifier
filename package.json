@@ -5,7 +5,8 @@
   "main": "index.js",
   "bin": {
     "jetifier-standalone": "./bin/jetifier-standalone",
-    "jetify": "./bin/jetify"
+    "jetify": "./bin/jetify",
+    "jetifier": "./bin/jetify"
   },
   "scripts": {
     "dev-sync": "cp -rv bin index.js lib package.json src ../rn-androidx-demo/rnandroidxdemo/node_modules/jetifier",

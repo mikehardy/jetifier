@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.4
+- fix: link jetify to jetifier name, `npx jetifier` works (thanks @salakar for the assist)
+
 ## 1.6.3
 - fix: avoid substring/superstring shadowing in regex (#32) thanks @mysport12!
 
