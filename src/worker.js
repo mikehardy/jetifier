@@ -1,18 +1,22 @@
-const { readFileSync, writeFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs')
 
-process.on('message', ({ filesChunk, classesMapping, mode }) => {
-
+process.on('message', ({ filesChunk, classesMapping, mode, verbose }) => {
+  let counter = 0
   for (const file of filesChunk) {
-    let data = readFileSync(file, { encoding: 'utf8' });
+    if (verbose) process.stdout.write(`file: ${file} ${counter++}/${filesChunk.length}\n`)
+
+    let data = readFileSync(file, { encoding: 'utf8' })
     for (const [oldClass, newClass] of classesMapping) {
-      if (data.includes(mode === 'forward' ? oldClass : newClass)) {
-        data = mode === 'forward' ?
-          data.replace(new RegExp(oldClass, 'g'), newClass) :
-          data.replace(new RegExp(newClass, 'g'), oldClass);
-        writeFileSync(file, data, { encoding: 'utf8' });
+      const left = mode === 'forward' ? oldClass : newClass
+      const right = mode === 'forward' ? newClass : oldClass
+
+      if (data.includes(left)) {
+        data = data.replace(new RegExp(left, 'g'), right)
       }
     }
+
+    writeFileSync(file, data, { encoding: 'utf8' })
   }
 
-  process.exit(0);
-});
+  process.exit(0)
+})
