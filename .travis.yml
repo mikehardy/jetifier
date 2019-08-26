@@ -55,6 +55,9 @@ before_install:
       # skip brew update
       export HOMEBREW_NO_AUTO_UPDATE=1
       brew cask uninstall java; brew tap AdoptOpenJDK/openjdk; brew cask install adoptopenjdk8;
+    else
+      PATH=$(echo "$PATH" | sed -e 's/:\/usr\/local\/lib\/jvm\/openjdk11\/bin//');
+      JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64;
     fi
   # Accept licenses before installing components, no need to echo y for each component
   - yes | sdkmanager --licenses
