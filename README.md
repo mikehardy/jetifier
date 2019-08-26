@@ -56,10 +56,10 @@ _Inspiration:_ this jetify command was based on [an idea](https://gist.github.co
 npx jetify --mapping={custom-mapping-file.csv} --includes={custom-includes.txt} --excludes={custom-excludes.txt} --verbose
 ```
 
-* `--mapping=` - allows to customize mapping file, provide project specific CSV file
-* `--includes=` - allows to customize what files/folders will be included into processing
-* `--excludes=` - allows to customize what files/folders will be excluded from processing
-* `--verbose` - force tool to publish extra information about each processed file
+- `--mapping=` - allows to customize mapping file, provide project specific CSV file
+- `--includes=` - allows to customize what files/folders will be included into processing
+- `--excludes=` - allows to customize what files/folders will be excluded from processing
+- `--verbose` - force tool to publish extra information about each processed file
 
 Includes:
 
