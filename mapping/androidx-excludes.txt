@@ -20,4 +20,4 @@
 /xmldoc/
 
 # JSC
-/jsc-android
+/jsc-android/

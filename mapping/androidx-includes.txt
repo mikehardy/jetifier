@@ -1,4 +1,4 @@
-# List of all excludes. Each line treated as a 'substring' that can be in
+# List of all includes. Each line treated as a 'substring' that can be in
 # found file path. We do not support wildcards or regexps right now.
 # Comments are supported.
 

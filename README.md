@@ -118,7 +118,7 @@ You may be a library maintainer, wanting to ship an AAR of your support code con
 As part of your build process you can use this tool like so:
 
 1. `npm install jetifier` (or maybe `npm install -g jetifier` to make it globally available)
-2. `npx jetifier-standalone <your arguments here>` (use `npx jetifier-standalone -h` for help)
+1. `npx jetifier-standalone <your arguments here>` (use `npx jetifier-standalone -h` for help)
 
 I have not altered the jetifier-standalone distribution in any way.
 
