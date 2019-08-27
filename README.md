@@ -11,7 +11,8 @@ The jetifier AndroidX transition tool in npm format, with a react-native compati
 - [Do you need this?](#do-you-need-this)
 - [Usage for source files](#usage-for-source-files)
   - [To jetify / convert node_modules dependencies to AndroidX](#to-jetify--convert-nodemodules-dependencies-to-androidx)
-    - [Command line options](#command-line-options)
+  - [AndroidX webkit OR custom mapping](#androidx-webkit-or-custom-mapping)
+  - [Command line options](#command-line-options)
   - [To reverse-jetify / convert node_modules dependencies to Support Libraries](#to-reverse-jetify--convert-nodemodules-dependencies-to-support-libraries)
 - [Usage for jar/zip/aar files](#usage-for-jarzipaar-files)
 - [Troubleshooting](#troubleshooting)
@@ -50,7 +51,18 @@ Proof it works / how this is tested: <https://github.com/mikehardy/rn-androidx-d
 
 _Inspiration:_ this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
 
-#### Command line options
+### AndroidX webkit OR custom mapping
+
+```bash
+# regular processing with default AndroidX mapping provided by Google
+# correspond to: npx jetify --mapping=node_modules/jetifier/mapping/androidx-class-mapping.csv
+npx jetify
+
+# custom mapping, provided by community
+npx jetify --mapping=node_modules/jetifier/mapping/androidx-webkit-mapping.csv
+```
+
+### Command line options
 
 ```bash
 npx jetify --mapping={custom-mapping-file.csv} --includes={custom-includes.txt} --excludes={custom-excludes.txt} --verbose

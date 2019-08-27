@@ -1,23 +1,29 @@
-# List of all excludes. Each line treated as a 'substring' that can be in
-# found file path. We do not support wildcards or regexps right now.
+# List of all excludes. Each line treated as a 'substring' that can be
+# found in file path. We do not support wildcards or regexps right now.
 # Comments are support.
 
 # Android build folders
 /android/build/
 
+# iOS
+/ios/
+
 # IntelliJ folders
 /.idea/
+
+# VsCode folders
+/.vscode/
 
 # GIT repository folder
 /.git/
 
-# Selenium
-/selenium-webdriver/
-
-# well know react modules
-/json-schema/
-/renderkid/
-/xmldoc/
+# well know react modules. Examples:
+# /json-schema/
+# /renderkid/
+# /xmldoc/
 
 # JSC
-/jsc-android/
+# /jsc-android/
+
+# Selenium
+# /selenium-webdriver/

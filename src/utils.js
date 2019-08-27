@@ -39,15 +39,11 @@ const loadIncludesFromFile = () => {
   const txtIncludes = includesFile;
   const lines = readFileSync(txtIncludes, { encoding: 'utf8' }).split(/\r?\n/);
 
-  // exclude comments
   // sort by line length
+  // exclude comments
   return lines
-    .sort((a, b) => {
-      return b.length - a.length;
-    })
-    .filter(line => {
-      return !line.startsWith('#');
-    });
+    .sort((a, b) => b.length - a.length)
+    .filter(line => !line.startsWith('#'));
 };
 
 const loadExcludesFromFile = () => {
@@ -56,15 +52,11 @@ const loadExcludesFromFile = () => {
   const txtIncludes = excludesFile;
   const lines = readFileSync(txtIncludes, { encoding: 'utf8' }).split(/\r?\n/);
 
-  // exclude comments
   // sort by line length
+  // exclude comments
   return lines
-    .sort((a, b) => {
-      return b.length - a.length;
-    })
-    .filter(line => {
-      return !line.startsWith('#');
-    });
+    .sort((a, b) => b.length - a.length)
+    .filter(line => !line.startsWith('#'));
 };
 
 const includes = loadIncludesFromFile()
@@ -103,20 +95,12 @@ const loadCSVFile = () => {
   const csvFilePath = mappingFile;
   const lines = readFileSync(csvFilePath, { encoding: 'utf8' }).split(/\r?\n/);
 
-  // Remove redundant "Support Library class,Android X class" from array
-  lines.shift();
-
-  // last element will always be an empty line so removing it from the array
-  while (lines[lines.length - 1] === '') {
-    lines.pop();
-  }
-
-  // Some mappings are substrings of other mappings, transform longest mappings first
-  lines.sort(function(a, b){
-    return b.length - a.length;
-  });
-
-  return lines;
+  // 1. Some mappings are substrings of other mappings, transform longest mappings first
+  // 2.1. Remove redundant "Support Library class,Android X class" from array
+  // 2.2. last element will always be an empty line so removing it from the array
+  return lines
+    .sort((a,b) => b.length - a.length) 
+    .filter(line => line !== 'Support Library class,Android X class' && line.trim() !== '');
 };
 
 const getClassesMapping = () => {
