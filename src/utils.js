@@ -60,7 +60,7 @@ const loadExcludesFromFile = () => {
 };
 
 const includes = loadIncludesFromFile()
-const excludes = loadExcludesFromFile()
+const excludes = excludesFile ? loadExcludesFromFile() : null
 
 const readDir = (dir, filesList = []) => {
   const files = readdirSync(dir);
