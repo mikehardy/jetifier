@@ -19,7 +19,7 @@ const defaultIncludes = join(__dirname, '..', 'mapping', 'androidx-includes.txt'
 const defaultExcludes = join(__dirname, '..', 'mapping', 'androidx-excludes.txt');
 const defaultMapping = join(__dirname, '..', 'mapping', 'androidx-class-mapping.csv');
 const includesFile = args.includes ? args.includes : defaultIncludes;
-const excludesFile = args.excludes ? args.excludes : defaultExcludes;
+const excludesFile = args.excludes ? args.excludes : null;
 const mappingFile = args.mapping ? args.mapping : defaultMapping;
 
 if (verbose) console.log(args)
