@@ -17,6 +17,8 @@ The jetifier AndroidX transition tool in npm format, with a react-native compati
 
 ## Do you need this?
 
+***Note that jetifier is included and ran automatically with [react-native-community/cli](https://github.com/react-native-community/cli) for React Native versions 0.60 and above, so you do not need to install and run jetifier manually.***
+
 If you use React Native modules with native Java code that isn't converted to AndroidX, and your app is AndroidX, you probably need this.
 
 Why?
@@ -42,6 +44,8 @@ So now you need to convert your app to AndroidX, but many of your react-native l
 1. `npx jetify`
 1. `npx react-native run-android` (your app should correctly compile and work)
 1. Call `npx jetify` run in the postinstall target of your package.json (Any time your dependencies update you have to jetify again)
+
+***As noted above, jetify is ran for you automatically in React Native versions 0.60 and above.***
 
 Proof it works / how this is tested: <https://github.com/mikehardy/rn-androidx-demo>. You can clone that repo, run the script, and see it works. Please feel to make PRs to that repo, especially in App.js or in the dependencies included, if you would like to demonstrate success or failure for a specific module.
 
