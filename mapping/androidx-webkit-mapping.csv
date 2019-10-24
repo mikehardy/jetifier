@@ -1,0 +1,24 @@
+Support Library class,Android X class
+android.webkit.ProxyConfig,androidx.webkit.ProxyConfig
+android.webkit.ProxyController,androidx.webkit.ProxyController
+android.webkit.SafeBrowsingResponseCompat,androidx.webkit.SafeBrowsingResponseCompat
+android.webkit.ServiceWorkerClientCompat,androidx.webkit.ServiceWorkerClientCompat
+android.webkit.ServiceWorkerControllerCompat,androidx.webkit.ServiceWorkerControllerCompat
+android.webkit.ServiceWorkerWebSettingsCompat,androidx.webkit.ServiceWorkerWebSettingsCompat
+android.webkit.TracingConfig,androidx.webkit.TracingConfig
+android.webkit.TracingController,androidx.webkit.TracingController
+android.webkit.WebMessageCompat,androidx.webkit.WebMessageCompat
+android.webkit.WebMessagePortCompat.WebMessageCallbackCompat,androidx.webkit.WebMessagePortCompat.WebMessageCallbackCompat
+android.webkit.WebMessagePortCompat,androidx.webkit.WebMessagePortCompat
+android.webkit.WebResourceErrorCompat,androidx.webkit.WebResourceErrorCompat
+android.webkit.WebResourceRequestCompat,androidx.webkit.WebResourceRequestCompat
+android.webkit.WebSettingsCompat,androidx.webkit.WebSettingsCompat
+android.webkit.WebViewAssetLoader.InternalStoragePathHandler,androidx.webkit.WebViewAssetLoader.InternalStoragePathHandler
+android.webkit.WebViewAssetLoader,androidx.webkit.WebViewAssetLoader
+android.webkit.WebViewClientCompat,androidx.webkit.WebViewClientCompat
+android.webkit.WebViewCompat,androidx.webkit.WebViewCompat
+android.webkit.WebViewFeature,androidx.webkit.WebViewFeature
+android.webkit.WebViewRenderProcess,androidx.webkit.WebViewRenderProcess
+android.webkit.WebViewRenderProcessClient,androidx.webkit.WebViewRenderProcessClient
+android.webkit.WebkitUtils,androidx.webkit.WebkitUtils
+WebView.startSafeBrowsing,WebViewCompat.startSafeBrowsing

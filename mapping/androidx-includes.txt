@@ -1,0 +1,12 @@
+# List of all includes. Each line treated as a 'substring' that can be in
+# found file path. We do not support wildcards or regexps right now.
+# Comments are supported.
+
+# Java files
+.java
+
+# Kotlin files
+.kt
+
+# AndroidManifest files and XML resources
+.xml

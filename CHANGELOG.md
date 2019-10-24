@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7.0
+- add: CLI parameters that allow include/exclude files/folders from processing (default includes/excludes - mapping/androidx-includes.txt && mapping/androidx-excludes.txt)
+- add: CLI paramater that provide custom mapping file for tool
+- docs(README): added description and sample of usage - (thanks @oleksandrkucherenko)
+
 ## 1.6.4
 - fix: link jetify to jetifier name, `npx jetifier` works (thanks @salakar for the assist)
 

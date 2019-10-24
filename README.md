@@ -7,10 +7,14 @@ The jetifier AndroidX transition tool in npm format, with a react-native compati
 
 ## TOC
 
-- [Why?](#do_you_need_this)
-- [Convert to AndroidX](#to-jetify--convert-node_modules-dependencies-to-androidx)
-- [Convert to Support Libraries](#to-reverse-jetify--convert-node_modules-dependencies-to-support-libraries)
-- [Convert JAR/AAR/ZIP files](#usage-for-jarzipaar-files)
+- [TOC](#toc)
+- [Do you need this?](#do-you-need-this)
+- [Usage for source files](#usage-for-source-files)
+  - [To jetify / convert node_modules dependencies to AndroidX](#to-jetify--convert-nodemodules-dependencies-to-androidx)
+  - [AndroidX webkit OR custom mapping](#androidx-webkit-or-custom-mapping)
+  - [Command line options](#command-line-options)
+  - [To reverse-jetify / convert node_modules dependencies to Support Libraries](#to-reverse-jetify--convert-nodemodules-dependencies-to-support-libraries)
+- [Usage for jar/zip/aar files](#usage-for-jarzipaar-files)
 - [Troubleshooting](#troubleshooting)
 - [Module Maintainers](#module-maintainers)
 - [Contributing](#contributing)
@@ -50,6 +54,68 @@ So now you need to convert your app to AndroidX, but many of your react-native l
 Proof it works / how this is tested: <https://github.com/mikehardy/rn-androidx-demo>. You can clone that repo, run the script, and see it works. Please feel to make PRs to that repo, especially in App.js or in the dependencies included, if you would like to demonstrate success or failure for a specific module.
 
 _Inspiration:_ this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
+
+### AndroidX webkit OR custom mapping
+
+```bash
+# regular processing with default AndroidX mapping provided by Google
+# correspond to: npx jetify --mapping=node_modules/jetifier/mapping/androidx-class-mapping.csv
+npx jetify
+
+# custom mapping, provided by community
+npx jetify --mapping=node_modules/jetifier/mapping/androidx-webkit-mapping.csv
+```
+
+### Command line options
+
+```bash
+npx jetify --mapping={custom-mapping-file.csv} --includes={custom-includes.txt} --excludes={custom-excludes.txt} --verbose
+```
+
+- `--mapping=` - allows to customize mapping file, provide project specific CSV file
+- `--includes=` - allows to customize what files/folders will be included into processing
+- `--excludes=` - allows to customize what files/folders will be excluded from processing
+- `--verbose` - force tool to publish extra information about each processed file
+
+Includes:
+
+```text
+# List of all excludes. Each line treated as a 'substring' that can be in
+# found file path. We do not support wildcards or regexps right now.
+# Comments are supported.
+
+# Java files
+.java
+```
+
+Excludes:
+
+```text
+# List of all excludes. Each line treated as a 'substring' that can be in
+# found file path. We do not support wildcards or regexps right now.
+# Comments are support.
+
+# Android build folders
+/android/build/
+
+# IntelliJ folders
+/.idea/
+
+# JSC
+/jsc-android
+```
+
+Outputs:
+
+```text
+npx jetifier
+Used include file: /Users/oleksandr.kucherenko/projects/app/clients/node_modules/jetifier/mapping/androidx-includes.txt
+Used exclude file: /Users/oleksandr.kucherenko/projects/app/clients/node_modules/jetifier/mapping/androidx-excludes.txt
+Used mapping file: /Users/oleksandr.kucherenko/projects/app/clients/node_modules/jetifier/mapping/androidx-class-mapping.csv
+Loaded lines: 1960
+Building list of files for modifications...
+Jetifier found 1285 file(s) to forward-jetify. Using 8 workers...
+```
 
 ### To reverse-jetify / convert node_modules dependencies to Support Libraries
 
