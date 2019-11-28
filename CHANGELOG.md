@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.5
+- fix: avoid infinite readdir loop w/symlink skip (great work, thanks @gaodeng!)
+- docs(README): clarify jetifier runs automatically in RN>=0.60 (thanks @taylorkline!)
+- chore(CI): make sure openjdk8 is used on linux CI instances (@mikehardy)
+
 ## 1.6.4
 - fix: link jetify to jetifier name, `npx jetifier` works (thanks @salakar for the assist)
 
