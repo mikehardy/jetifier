@@ -39,6 +39,6 @@
   },
   "homepage": "https://github.com/mikehardy/jetifier#readme",
   "devDependencies": {
-    "np": "^5.0.3"
+    "np": "^5.1.3"
   }
 }
