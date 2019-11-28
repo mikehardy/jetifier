@@ -11,10 +11,13 @@ const chunk = (array, chunkSize) => {
 };
 
 const readDir = (dir, filesList = []) => {
-  const files = readdirSync(dir);
-  for (let file of files) {
+  const direntList = readdirSync(dir, { withFileTypes: true });
+  for (let dirent of direntList) {
+    if (dirent.isSymbolicLink()) {
+      continue;
+    }
+    let file = dirent.name;
     const filePath = join(dir, file);
-
     if (existsSync(filePath)) {
       if (statSync(filePath).isDirectory()) {
         filesList = readDir(filePath, filesList);
