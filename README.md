@@ -57,7 +57,7 @@ Maybe you are in the position where you must not migrate to AndroidX yet. But yo
 
 You can convert them back with reverse-jetify mode
 
-Follow the instructions from above to convert to AndroidX, **but add the `-r` flag to the `npx jetify` call.**
+Follow steps 2 through 5 above (to install jetifier), **but add the `-r` flag to the `npx jetify` call to use it in reverse mode.**
 
 If a library ships only as a jar/aar/zip file, you will have to use jetifier-standalone to convert that as well, but you can delay the AndroidX migration indefinitely with this style.
 
