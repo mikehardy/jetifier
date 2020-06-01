@@ -10,6 +10,17 @@ const chunk = (array, chunkSize) => {
   return result;
 };
 
+const traverseNodeModules = (startPath, visitFn) => {
+  const nmPath = join(startPath, 'node_modules');
+  if (existsSync(nmPath)) {
+    visitFn(nmPath);
+  }
+  const upperDir = join(startPath, "../");
+  if (upperDir !== startPath) {
+    traverseNodeModules(join(startPath, "../"), visitFn);
+  }
+}
+
 const readDir = (dir, filesList = []) => {
   const files = readdirSync(dir);
   for (let file of files) {
@@ -68,6 +79,7 @@ const getClassesMapping = () => {
 
 module.exports = {
   getClassesMapping,
+  traverseNodeModules,
   readDir,
   chunk
 };
