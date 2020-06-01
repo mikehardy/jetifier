@@ -12,25 +12,26 @@ matrix:
   fast_finish: true
   include:
     - os: osx
-      osx_image: xcode10.2
-      env: RNVERSION=59 NODE=8
-    - os: osx
-      osx_image: xcode10.2
+      osx_image: xcode11.5
       env: RNVERSION=59 NODE=10
     - os: osx
-      osx_image: xcode10.2
-      env: RNVERSION=60 NODE=11
+      osx_image: xcode11.5
+      env: RNVERSION=60 NODE=12
     - os: osx
-      osx_image: xcode10.2
+      osx_image: xcode11.5
       env: RNVERSION=60 NODE=node
     - os: linux
-      env: RNVERSION=59 NODE=11
+      env: RNVERSION=60 NODE=10
+    - os: linux
+      env: RNVERSION=61 NODE=12
+    - os: linux
+      env: RNVERSION=62 NODE=12
+    - os: linux
+      env: RNVERSION=62 NODE=14
+    - os: linux
+      env: RNVERSION=59 NODE=12
     - os: linux
       env: RNVERSION=59 NODE=node
-    - os: linux
-      env: RNVERSION=60 NODE=8
-    - os: linux
-      env: RNVERSION=60 NODE=10
   allow_failures:
     - env: RNVERSION=60 NODE=node
 
