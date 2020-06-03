@@ -51,6 +51,8 @@ Proof it works / how this is tested: <https://github.com/mikehardy/rn-androidx-d
 
 _Inspiration:_ this jetify command was based on [an idea](https://gist.github.com/janicduplessis/df9b5e3c2b2e23bbae713255bdb99f3c) from @janicduplessis - thank you Janic!
 
+_Performance:_ the reason this thing is so fast you probably did not know you were using it is because Yassine Fathi / @m4tt72 rewrote the original proof-of-concept in javascript - thank you Yassine!
+
 ### To reverse-jetify / convert node_modules dependencies to Support Libraries
 
 Maybe you are in the position where you must not migrate to AndroidX yet. But your libraries have started to migrate and they ship AndroidX native Java code.
