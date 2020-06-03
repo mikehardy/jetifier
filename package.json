@@ -40,5 +40,9 @@
   "homepage": "https://github.com/mikehardy/jetifier#readme",
   "devDependencies": {
     "np": "^5.1.3"
+  },
+  "dependencies": {
+    "commander": "^4.1.1",
+    "glob": "^7.1.6"
   }
 }

@@ -10,16 +10,17 @@ const chunk = (array, chunkSize) => {
   return result;
 };
 
-const readDir = (dir, filesList = []) => {
-  const files = readdirSync(dir);
-  for (let file of files) {
-    const filePath = join(dir, file);
+const getFilesList = (globFiles, filesList = []) => {
+  const cwd = process.cwd();
+
+  for (let file of globFiles) {
+    const filePath = join(cwd, file);
     if (lstatSync(filePath).isSymbolicLink()) {
       continue;
     }
     if (existsSync(filePath)) {
       if (statSync(filePath).isDirectory()) {
-        filesList = readDir(filePath, filesList);
+        filesList = getFilesList(filePath, filesList);
       }
       else {
         if (file.endsWith('.java') || file.endsWith('.xml') || file.endsWith('.kt')) {
@@ -68,6 +69,6 @@ const getClassesMapping = () => {
 
 module.exports = {
   getClassesMapping,
-  readDir,
+  getFilesList,
   chunk
 };
