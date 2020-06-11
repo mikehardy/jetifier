@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.6
+- chore: update jetifier-standalone distribution (thanks @mcBIG!)
+- docs: include jetifier-standalone checksums (verified vs upstream, @mikehardy)
+
 ## 1.6.5
 - fix: avoid infinite readdir loop w/symlink skip (great work, thanks @gaodeng!)
 - docs(README): clarify jetifier runs automatically in RN>=0.60 (thanks @taylorkline!)
