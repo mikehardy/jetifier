@@ -1,3 +1,19 @@
+@rem
+@rem Copyright 2015 the original author or authors.
+@rem
+@rem Licensed under the Apache License, Version 2.0 (the "License");
+@rem you may not use this file except in compliance with the License.
+@rem You may obtain a copy of the License at
+@rem
+@rem      https://www.apache.org/licenses/LICENSE-2.0
+@rem
+@rem Unless required by applicable law or agreed to in writing, software
+@rem distributed under the License is distributed on an "AS IS" BASIS,
+@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@rem See the License for the specific language governing permissions and
+@rem limitations under the License.
+@rem
+
 @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem
@@ -63,7 +79,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\jetifier-standalone.jar;%APP_HOME%\lib\jetifier-processor-1.0.0-beta04.jar;%APP_HOME%\lib\commons-cli-1.3.1.jar;%APP_HOME%\lib\jetifier-core-1.0.0-beta04.jar;%APP_HOME%\lib\asm-util-6.0.jar;%APP_HOME%\lib\asm-commons-6.0.jar;%APP_HOME%\lib\asm-tree-6.0.jar;%APP_HOME%\lib\asm-6.0.jar;%APP_HOME%\lib\jdom2-2.0.6.jar;%APP_HOME%\lib\kotlin-stdlib-1.3.0.jar;%APP_HOME%\lib\gson-2.8.0.jar;%APP_HOME%\lib\kotlin-stdlib-common-1.3.0.jar;%APP_HOME%\lib\annotations-13.0.jar
+set CLASSPATH=%APP_HOME%\lib\jetifier-standalone.jar;%APP_HOME%\lib\jetifier-processor-1.0.0-beta09.jar;%APP_HOME%\lib\commons-cli-1.3.1.jar;%APP_HOME%\lib\jetifier-core-1.0.0-beta09.jar;%APP_HOME%\lib\asm-util-6.0.jar;%APP_HOME%\lib\asm-commons-6.0.jar;%APP_HOME%\lib\asm-tree-6.0.jar;%APP_HOME%\lib\asm-6.0.jar;%APP_HOME%\lib\jdom2-2.0.6.jar;%APP_HOME%\lib\kotlin-stdlib-1.3.60.jar;%APP_HOME%\lib\gson-2.8.0.jar;%APP_HOME%\lib\kotlin-stdlib-common-1.3.60.jar;%APP_HOME%\lib\annotations-13.0.jar
 
 @rem Execute jetifier-standalone
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %JETIFIER_STANDALONE_OPTS%  -classpath "%CLASSPATH%" com.android.tools.build.jetifier.standalone.Main %CMD_LINE_ARGS%
