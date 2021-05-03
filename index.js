@@ -11,6 +11,7 @@ const SEARCH_DIR = 'node_modules';
 const classesMapping = getClassesMapping();
 const files = readDir(SEARCH_DIR);
 
+console.warn('Jetifier is deprecated. Future versions of react-native CLI may not run it by default.')
 console.log(`Jetifier found ${files.length} file(s) to ${mode}-jetify. Using ${cpus} workers...`);
 
 for (const filesChunk of chunk(files, cpus)) {
