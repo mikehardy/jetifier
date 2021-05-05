@@ -6,7 +6,6 @@ process.on('message', ({ filesChunk, classesMapping, mode }) => {
     let data = readFileSync(file, { encoding: 'utf8' });
     for (const [oldClass, newClass] of classesMapping) {
       if (data.includes(mode === 'forward' ? oldClass : newClass)) {
-        console.warn(`Jetifier: propose an AndroidX conversion PR to this repository: ${file}`)
         data = mode === 'forward' ?
           data.replace(new RegExp(oldClass, 'g'), newClass) :
           data.replace(new RegExp(newClass, 'g'), oldClass);
