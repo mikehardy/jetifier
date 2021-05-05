@@ -1,6 +1,6 @@
 {
   "name": "jetifier",
-  "version": "1.6.7",
+  "version": "1.6.8",
   "description": "jetifier from Android Studio, in npm package format",
   "main": "index.js",
   "bin": {
