@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.6.8
+
+- revert deprecation notice.
+
+Today I learned, if build tools emit anything on console.warn, it is a breaking change. Sorry!
+
+## 1.6.7
+
+- attempt to emit a deprecation notice
+
 ## 1.6.6
 - chore: update jetifier-standalone distribution (thanks @mcBIG!)
 - docs: include jetifier-standalone checksums (verified vs upstream, @mikehardy)
