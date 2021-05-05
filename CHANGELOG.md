@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0
+
+- this is equivalent to version 1.6.7. No functional change, but it emits deprecation on console.warn
+
 ## 1.6.8
 
 - revert deprecation notice.
