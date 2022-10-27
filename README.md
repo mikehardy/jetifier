@@ -1,3 +1,17 @@
+# DO NOT USE THIS OBSOLETE PACKAGE
+
+Jetifier had a good run, didn't it? You probably did not even think about "AndroidX transition" in your react-native project because of this tool.
+
+All things come to an end though, just as the transition should. Jetifier has served its purpose and its time is over.
+
+No one should be using non-AndroidX libraries at this point, and thus no one should be using this utility any more at this point
+
+Specifically: you should already use the --no-jetifier command line option for react-native build so this does not even run, **and if you still have dependencies that need it, you should go make a PR in their repo so jetifier is no longer in the dependency list**
+
+There will be no further updates to this repository.
+
+----
+
 [![npm version](https://badge.fury.io/js/jetifier.svg)](http://badge.fury.io/js/jetifier)
 [![npm total downloads](https://img.shields.io/npm/dt/jetifier.svg)](https://img.shields.io/npm/dt/jetifier.svg)
 [![npm monthly downloads](https://img.shields.io/npm/dm/jetifier.svg)](https://img.shields.io/npm/dm/jetifier.svg)
